@@ -116,7 +116,7 @@ module Fluent::Plugin
                 log_stream_name = log_stream.log_stream_name
                 log.info "pulling logs from '#{log_stream.log_stream_name}'"
                 events = get_events(log_stream_name)
-                log.info "#{events.length} fetched from '#{log_stream.log_stream_name}'"
+                log.info "#{events.length} events fetched from '#{log_stream.log_stream_name}'"
                 events.each do |event|
                   emit(log_stream_name, event)
                 end
@@ -128,7 +128,7 @@ module Fluent::Plugin
           else
             log.info "pulling logs from '#{@log_stream_name}'"
             events = get_events(@log_stream_name)
-            log.info "#{events.length} fetched from '#{@log_stream_name}'"
+            log.info "#{events.length} events fetched from '#{@log_stream_name}'"
             events.each do |event|
               emit(log_stream_name, event)
             end
