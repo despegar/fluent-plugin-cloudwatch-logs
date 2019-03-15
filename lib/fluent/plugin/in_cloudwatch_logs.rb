@@ -125,6 +125,11 @@ module Fluent::Plugin
               log.warn "'#{@log_stream_name}' prefixed log stream(s) are not found"
               next
             end
+            rescue Aws::CloudWatchLogs::Errors::ThrottlingException
+              log.warn "'#{@log_stream_name}' Aws::CloudWatchLogs::Errors::ThrottlingException"
+              sleep 3
+              next
+            end
           else
             log.info "pulling logs from '#{@log_stream_name}'"
             events = get_events(@log_stream_name)
